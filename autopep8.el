@@ -20,11 +20,6 @@
   :type '(string)
   :group 'autopep8)
 
-(defcustom autopep8-path "C:/Python33/Scripts/autopep8-script.py"
-  "Path to autopep8 python file"
-  :type '(string)
-  :group 'autopep8)
-
 (defun autopep8 ()
   "Beautify a region or buffer of python using autopep8"
   (interactive)
@@ -35,8 +30,7 @@
 	  (unless (mark) (mark-defun))
 	  (shell-command-on-region (point)
 				   (mark)
-				   (concat "python "
-					   autopep8-path
+				   (concat "autopep8 "
 					   autopep8-args)
 				   nil t)
 	  (goto-char orig-point))
@@ -44,8 +38,7 @@
     (progn
       (shell-command-on-region (point-min)
 			       (point-max)
-			       (concat "python "
-				       autopep8-path
+			       (concat "autopep8 "
 				       autopep8-args)
 			       nil t)
       (message "Beautified buffer with autopep8"))))
